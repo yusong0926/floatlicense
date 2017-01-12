@@ -7,12 +7,12 @@
 #include <pthread.h>
 
 void helloworld() {
-    sleep(86400);
+    sleep(10);
 }
 
 
 void *heartbeat(void *sockfd) {
-    char key[] = "uofc$alive$";
+    char key[] = "uofc$bos$alive$";
    // char key[] = "l$";
     int n;
     int fd = (int)sockfd;
@@ -28,7 +28,10 @@ void *heartbeat(void *sockfd) {
 int main(int argc, char *argv[])
 {
     char key[20];
+    char software[20];
     int available;
+    printf("input your softwarename:");
+    scanf("%s", software);
     printf("input your key:");
     scanf("%s", key);
     int portno = atoi(argv[2]);
@@ -48,21 +51,23 @@ int main(int argc, char *argv[])
     memset(checkout_key, '\0', MSG_MSIZE * sizeof(char));
     memset(release_key, '\0', MSG_MSIZE * sizeof(char));
     strcat(checkout_key, HEADER);
+    strcat(checkout_key, "$");
+    strcat(checkout_key, software);
     strcat(checkout_key, "$checkout$");
     strcat(checkout_key, key);
     strcat(checkout_key, "$");
 
     strcat(release_key, HEADER);
+    strcat(release_key, "$");
+    strcat(release_key, software);
     strcat(release_key, "$release$");
     strcat(release_key, key);
     strcat(release_key, "$");
 
-     
-    printf("start checkout license: checkout_key: %s\n", checkout_key);
+    
+    printf("start  service: %s\n", checkout_key);
     
     available = checkout(sockfd, checkout_key);
-    printf("finish checkout license\n");
-    printf("available = %d\n", available);
     pthread_t thread;
     int rc = pthread_create(&thread, NULL, heartbeat, (void *)sockfd);
 

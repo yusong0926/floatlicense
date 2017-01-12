@@ -1,0 +1,16 @@
+{
+  "name": "floatlicense",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "song yu",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^4.5.10",
+    "posix": "^4.0.2"
+  }
+}

@@ -1,8 +1,8 @@
 #ifndef ELLA_WU
 #define ELLA_WU
 
-#define MSG_MSIZE 100 
-#define KEY_SIZE 20 
+#define MSG_MSIZE 200 
+#define KEY_SIZE 100 
 #define HEADER "uofc"
 #define HEADER_SIZE 19 
 
